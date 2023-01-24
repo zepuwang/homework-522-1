@@ -10,6 +10,7 @@ class LinearRegression:
         #raise NotImplementedError()
         pass
         
+        
 
     def fit(self, X, y):
         n = X.shape[0]
