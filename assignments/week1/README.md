@@ -4,8 +4,6 @@
 
 This is the first assignment for the course. It is designed to help you get familiar with the course environment and the tools we will be using.
 
-
-
 Most of the weeks in this class will work the same way: we'll give you a set of Python files in a directory like this one (`assignments/week1`), and instructions for how to modify them to meet the project needs.
 
 For example, this week we will implement a linear regression. Unlike just about every other week, there IS a solution to this task that has a "closed form" solution, so you won't be graded on the amount of time it takes to run your solution. Instead, your grade will be based upon the following:
