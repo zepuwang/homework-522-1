@@ -38,12 +38,12 @@ class GradientDescentLinearRegression(LinearRegression):
         # raise NotImplementedError()
         self.w = 0
         self.b = 0
-        n = len(X)
+        self.n = len(X)
         for i in range(epochs):
             y_pred = self.w * X + self.b
-            dw = (-2 / n) * sum(X * (y - y_pred))
-            db = (-1 / n) * sum(X * (y - y_pred))
-            self.w = self.w - dw * lr
+            dm = (-2 / self.n) * sum(X * (y - y_pred))
+            db = (-1 / self.n) * sum(y - y_pred)
+            self.w = self.w - dm * lr
             self.b = self.b - db * lr
 
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -56,6 +56,6 @@ class GradientDescentLinearRegression(LinearRegression):
         Returns:
             np.ndarray: The predicted output.
         """
-        y_pred = self.w @ X.T + self.b
+        return self.w * X + self.b
         return y_pred
         # raise NotImplementedError()
