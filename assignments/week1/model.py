@@ -22,7 +22,7 @@ class LinearRegression:
         # raise NotImplementedError()
 
     def predict(self, X) -> np.ndarray:
-        y = self.w @ X.T + self.b
+        y = np.dot(X, self.w)
         # raise NotImplementedError()
         return y
 
