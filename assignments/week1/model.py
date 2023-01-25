@@ -11,7 +11,7 @@ class LinearRegression:
         self.w = 0
         self.b = 0
 
-    def fit(self, X, y):
+    def fit(self, X, y) -> None:
         n = X.shape[0]
         p = X.shape[1]
         a = np.array([1] * n).reshape(n, 1)
@@ -21,7 +21,7 @@ class LinearRegression:
         self.b = w_[-1]
         # raise NotImplementedError()
 
-    def predict(self, X):
+    def predict(self, X) -> np.ndarray:
         y = self.w @ X.T + self.b
         # raise NotImplementedError()
         return y
@@ -31,11 +31,6 @@ class GradientDescentLinearRegression(LinearRegression):
     """
     A linear regression model that uses gradient descent to fit the model.
     """
-
-    def __init__(self):
-        # raise NotImplementedError()
-        self.w = 0
-        self.b = 0
 
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
