@@ -8,7 +8,8 @@ class LinearRegression:
 
     def __init__(self):
         # raise NotImplementedError()
-        pass
+        self.w = 0
+        self.b = 0
 
     def fit(self, X, y):
         n = X.shape[0]
@@ -31,10 +32,24 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
+    def __init__(self):
+        # raise NotImplementedError()
+        self.w = 0
+        self.b = 0
+
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
-        raise NotImplementedError()
+        # raise NotImplementedError()
+        self.w = 0
+        self.b = 0
+        n = len(X)
+        for i in range(epochs):
+            y_pred = self.w * X + self.b
+            dw = (-2 / n) * sum(X * (y - y_pred))
+            db = (-1 / n) * sum(X * (y - y_pred))
+            self.w = self.w - dw * lr
+            self.b = self.b - db * lr
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
@@ -45,6 +60,7 @@ class GradientDescentLinearRegression(LinearRegression):
 
         Returns:
             np.ndarray: The predicted output.
-
         """
-        raise NotImplementedError()
+        y_pred = self.w @ X.T + self.b
+        return y_pred
+        # raise NotImplementedError()
