@@ -13,14 +13,14 @@ class LinearRegression:
         self.w = 0
         self.b = 0
 
-    def fit(self, X, y):
+    def fit(self, X: np.ndarray, y: np.ndarray) -> None:
 
         n = X.shape[0]
         X = np.append(X, np.ones((n, 1)), axis=1)
         y = y.reshape(n, 1)
         self.w_ = np.linalg.inv(X.T @ X) @ (X.T @ y)
-
-    def predict(self, X):
+        self.w = self.w_[:-1]
+    def predict(self, X: np.ndarray) -> np.ndarray:
 
         n = X.shape[0]
         X = np.append(X, np.ones((n, 1)), axis=1)
