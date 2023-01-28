@@ -26,9 +26,9 @@ class LinearRegression:
 
         """
         n = X.shape[0]
-        X_ = np.append(X, np.ones((n, 1)), axis=1)  # Append column for bias
+        X = np.append(X, np.ones((n, 1)), axis=1)  # Append column for bias
         y = y.reshape(n, 1)
-        self.w_ = np.linalg.inv(X_.T @ X_) @ (X_.T @ y)
+        self.w_ = np.linalg.inv(X.T @ X) @ (X.T @ y)
         self.w = self.w_[-1]
 
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -43,7 +43,7 @@ class LinearRegression:
 
         """
         n = X.shape[0]
-        X_ = np.append(X_, np.ones((n, 1)), axis=1)
+        X = np.append(X, np.ones((n, 1)), axis=1)
         return np.dot(X, self.w_)
 
 
