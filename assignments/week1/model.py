@@ -16,14 +16,6 @@ class LinearRegression:
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
         Fit the model for the given input using a closed form solution.
-
-        Arguments:
-            X (np.ndarray): The input data.
-            y (np.ndarray): The input labels.
-
-        Returns:
-            np.ndarray: None.
-
         """
         n = X.shape[0]
         X = np.append(X, np.ones((n, 1)), axis=1)  # Append column for bias
@@ -34,13 +26,6 @@ class LinearRegression:
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input.
-
-        Arguments:
-            X (np.ndarray): The input data.
-
-        Returns:
-            np.ndarray: The predicted output.
-
         """
         n = X.shape[0]
         X = np.append(X, np.ones((n, 1)), axis=1)
