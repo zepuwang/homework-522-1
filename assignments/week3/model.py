@@ -39,7 +39,6 @@ class MLP(nn.Module):
         Returns:
             The output of the network.
         """
-        # x = x.view(-1, x.size(0))
         x = self.activate(self.fc1(x))
         x = self.fc2(x)
         return x
