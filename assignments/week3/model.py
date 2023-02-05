@@ -13,7 +13,6 @@ class MLP(nn.Module):
         activation: Callable = torch.nn.ReLU,
         initializer: Callable = torch.nn.init.ones_,
     ) -> None:
-
         """
         Initialize the MLP.
 
