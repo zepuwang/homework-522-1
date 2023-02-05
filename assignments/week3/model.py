@@ -43,4 +43,3 @@ class MLP(nn.Module):
         x = self.activate(x)
         x = self.fc2(x)
         return x
-
