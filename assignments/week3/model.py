@@ -40,6 +40,7 @@ class MLP(nn.Module):
             The output of the network.
         """
 
+        # haha
         x = self.fc1(x)
         x = self.activate(x)
         x = self.fc2(x)
