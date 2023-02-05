@@ -33,14 +33,14 @@ class MLP(nn.Module):
         Forward pass of the network.
 
         Arguments:
-            x: The input data.
+            x (tensor) : The input data.
 
         Returns:
-            The output of the network.
+            x (tensor): The output of the network.
         """
-
         # haha
         x = self.fc1(x)
         x = self.activate(x)
         x = self.fc2(x)
         return x
+
