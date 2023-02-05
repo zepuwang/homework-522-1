@@ -28,7 +28,7 @@ class MLP(nn.Module):
         self.activate = activation()
         self.fc2 = nn.Linear(hidden_size, num_classes)
 
-    def forward(self, x):
+    def forward(self, x) -> torch.Tensor:
         """
         Forward pass of the network.
 
