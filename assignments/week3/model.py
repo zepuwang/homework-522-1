@@ -7,6 +7,7 @@ class MLP(nn.Module):
     """
     It is a MLP model created by Zepu
     """
+
     def __init__(
         self,
         input_size: int,
