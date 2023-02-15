@@ -32,11 +32,8 @@ class CustomLRScheduler(_LRScheduler):
         Returns:
             the scheduler
         """
-        return [
-            (
-                base_lr
-                * (1.0 - min(self.total_iters, self.last_epoch) / self.total_iters)
-                ** self.power
-            )
-            for base_lr in self.base_lrs
-        ]
+        decay_factor = (
+            (1.0 - self.last_epoch / self.total_iters)
+            / (1.0 - (self.last_epoch - 1) / self.total_iters)
+        ) ** self.power
+        return [group["lr"] * decay_factor for group in self.optimizer.param_groups]
