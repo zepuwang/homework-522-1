@@ -40,8 +40,8 @@ class CustomLRScheduler(_LRScheduler):
             the scheduler
         """
         return [
-            
-            5 * base_lr
+            5
+            * base_lr
             * (
                 self.start_factor
                 + (self.end_factor - self.start_factor)
