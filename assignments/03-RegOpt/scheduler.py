@@ -9,7 +9,7 @@ class CustomLRScheduler(_LRScheduler):
     """
 
     def __init__(
-        self, optimizer, factor=1 / 4, total_iters=5, last_epoch=-1, verbose=False
+        self, optimizer, total_iters=5, power=1.0, last_epoch=-1, verbose=False
     ):
         """
         Create a new scheduler.
@@ -18,10 +18,9 @@ class CustomLRScheduler(_LRScheduler):
         if you need to add new parameters.
 
         """
-        self.factor = factor
         self.total_iters = total_iters
-        # ... Your Code Here ...
-        super(CustomLRScheduler, self).__init__(optimizer, last_epoch, verbose)
+        self.power = power
+        super().__init__(optimizer, last_epoch, verbose)
 
     def get_lr(self) -> List[float]:
         """
@@ -34,7 +33,10 @@ class CustomLRScheduler(_LRScheduler):
             the scheduler
         """
         return [
-            base_lr
-            * (self.factor + (self.last_epoch >= self.total_iters) * (1 - self.factor))
+            (
+                base_lr
+                * (1.0 - min(self.total_iters, self.last_epoch) / self.total_iters)
+                ** self.power
+            )
             for base_lr in self.base_lrs
         ]
