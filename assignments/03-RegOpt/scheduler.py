@@ -13,7 +13,7 @@ class CustomLRScheduler(_LRScheduler):
         optimizer,
         start_factor=1.0 / 3,
         end_factor=1.0,
-        total_iters=5,
+        total_iters=4,
         last_epoch=-1,
         verbose=False,
     ):
@@ -40,8 +40,8 @@ class CustomLRScheduler(_LRScheduler):
             the scheduler
         """
         return [
-            3
-            * base_lr
+            
+            5 * base_lr
             * (
                 self.start_factor
                 + (self.end_factor - self.start_factor)
