@@ -9,7 +9,13 @@ class CustomLRScheduler(_LRScheduler):
     """
 
     def __init__(
-        self, optimizer, step_size=0.1, gamma=0.1, last_epoch=-1, verbose=False
+        self,
+        optimizer,
+        start_factor=1.0 / 3,
+        end_factor=1.0,
+        total_iters=5,
+        last_epoch=-1,
+        verbose=False,
     ):
         """
         Create a new scheduler.
@@ -18,9 +24,10 @@ class CustomLRScheduler(_LRScheduler):
         if you need to add new parameters.
 
         """
-        self.step_size = step_size
-        self.gamma = gamma
-        super(_LRScheduler, self).__init__(optimizer, last_epoch, verbose)
+        self.start_factor = start_factor
+        self.end_factor = end_factor
+        self.total_iters = total_iters
+        super().__init__(optimizer, last_epoch, verbose)
 
     def get_lr(self) -> List[float]:
         """
@@ -33,6 +40,13 @@ class CustomLRScheduler(_LRScheduler):
             the scheduler
         """
         return [
-            base_lr * self.gamma ** (self.last_epoch // self.step_size)
+            3
+            * base_lr
+            * (
+                self.start_factor
+                + (self.end_factor - self.start_factor)
+                * min(self.total_iters, self.last_epoch)
+                / self.total_iters
+            )
             for base_lr in self.base_lrs
         ]
