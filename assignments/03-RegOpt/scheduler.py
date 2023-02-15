@@ -27,7 +27,5 @@ class CustomLRScheduler(_LRScheduler):
         Returns:
             the scheduler
         """
-
-
         return [base_lr * (self.factor + (self.last_epoch >= self.total_iters) * (1 - self.factor))
                 for base_lr in self.base_lrs]
