@@ -8,7 +8,7 @@ class CustomLRScheduler(_LRScheduler):
     It is a scheduler
     """
 
-    def __init__(self, optimizer, step_size, gamma=0.1, last_epoch=-1, verbose=False):
+    def __init__(self, optimizer, step_size=0.1, gamma=0.1, last_epoch=-1, verbose=False):
         """
         Create a new scheduler.
 
