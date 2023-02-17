@@ -2,6 +2,8 @@ from typing import List
 
 from torch.optim.lr_scheduler import _LRScheduler
 
+import math
+
 
 class CustomLRScheduler(_LRScheduler):
     """
@@ -36,15 +38,16 @@ class CustomLRScheduler(_LRScheduler):
             the scheduler
 
         """
-        if self.last_epoch < 2500:
+        if self.last_epoch < 2000:
             return [base_lr for base_lr in self.base_lrs]
 
-        if self.last_epoch < 8000:
+        if self.last_epoch < 4000:
             return [
-                base_lr * (1 - (self.last_epoch - 2500) / 6000)
+                base_lr * (1 - (self.last_epoch - 2000) / 4000)
                 for base_lr in self.base_lrs
             ]
 
         return [
-            base_lr * (0.9999 ** (self.last_epoch - 8000)) for base_lr in self.base_lrs
+            1e-7 + base_lr * (1 + math.cos(math.pi * (self.last_epoch - 4000) / 20000))
+            for base_lr in self.base_lrs
         ]
