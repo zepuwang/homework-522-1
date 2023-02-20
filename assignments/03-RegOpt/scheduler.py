@@ -38,16 +38,16 @@ class CustomLRScheduler(_LRScheduler):
             the scheduler
 
         """
-        if self.last_epoch < 2000:
+        if self.last_epoch < 2500:
             return [base_lr for base_lr in self.base_lrs]
 
-        if self.last_epoch < 4000:
+        if self.last_epoch < 5000:
             return [
-                base_lr * (1 - (self.last_epoch - 2000) / 4000)
+                base_lr * (1 - (self.last_epoch - 2000) / 5000)
                 for base_lr in self.base_lrs
             ]
 
         return [
-            1e-7 + base_lr * (1 + math.cos(math.pi * (self.last_epoch - 4000) / 20000))
+            1e-7 + base_lr * (1 + math.cos(math.pi * (self.last_epoch - 5000) / 20000))
             for base_lr in self.base_lrs
         ]
