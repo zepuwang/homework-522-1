@@ -5,6 +5,7 @@ class Model(torch.nn.Module):
     """
     It is a model created by Zepu
     """
+
     def __init__(self, num_channels: int, num_classes: int) -> None:
         """
         Initialize the model.
@@ -16,18 +17,22 @@ class Model(torch.nn.Module):
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
-        super(Model,self).__init__()
-        self.hidden  = 32
+        super(Model, self).__init__()
+        self.hidden = 32
         self.size = 3
         self.stride = 2
-        self.conv1 = torch.nn.Conv2d(num_channels,self.hidden,kernel_size=(self.size,self.size))
+        self.conv1 = torch.nn.Conv2d(
+            num_channels, self.hidden, kernel_size=(self.size, self.size)
+        )
         torch.nn.init.xavier_uniform_(self.conv1.weight)
         self.relu = torch.nn.ReLU()
-        self.fc1 = torch.nn.Linear(((32-self.size+1)**2)*self.hidden,num_classes)
-        self.pool = torch.nn.MaxPool2d(3,stride = self.stride)
-        self.c1 = (32-self.size+1)
+        self.fc1 = torch.nn.Linear(
+            ((32 - self.size + 1) ** 2) * self.hidden, num_classes
+        )
+        self.pool = torch.nn.MaxPool2d(3, stride=self.stride)
+        self.c1 = 32 - self.size + 1
         self.c2 = int((self.c1 - 3 + 1) / self.stride)
-        self.fc2 = torch.nn.Linear(self.c2 * self.c2 * self.hidden,num_classes)
+        self.fc2 = torch.nn.Linear(self.c2 * self.c2 * self.hidden, num_classes)
         torch.nn.init.xavier_uniform_(self.fc2.weight)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -42,10 +47,10 @@ class Model(torch.nn.Module):
         """
         x = self.conv1(x)
         x = self.relu(x)
-        #print(x.shape)
+        # print(x.shape)
         x = self.pool(x)
         x = self.relu(x)
-        #print(x.shape)
+        # print(x.shape)
         x = torch.flatten(x, 1)
         x = self.fc2(x)
         return x
