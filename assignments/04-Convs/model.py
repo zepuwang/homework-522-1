@@ -18,7 +18,7 @@ class Model(torch.nn.Module):
             initializer: The initializer to use for the weights.
         """
         super(Model, self).__init__()
-        self.hidden = 32
+        self.hidden = 36
         self.size = 3
         self.stride = 2
         self.conv1 = torch.nn.Conv2d(
