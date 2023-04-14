@@ -3,6 +3,10 @@ import gymnasium as gym
 
 
 class Agent:
+    """
+    It is a model created by Zepu
+    """
+
     def __init__(
         self,
         action_space: gym.spaces.Discrete,
@@ -10,6 +14,9 @@ class Agent:
         learning_rate=0.01,
         discount_factor=0.99,
     ):
+        """
+        It is a model created by Zepu
+        """
         self.action_space = action_space
         self.observation_space = observation_space
         self.learning_rate = learning_rate
@@ -35,6 +42,9 @@ class Agent:
         next_observation: gym.spaces.Box,
         done: bool,
     ) -> None:
+        """
+        It is a model created by Zepu
+        """
         # Compute the TD error
         td_error = (
             reward
