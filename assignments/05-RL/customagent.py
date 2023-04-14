@@ -26,6 +26,9 @@ class Agent:
         self.weights = np.zeros((observation_space.shape[0], action_space.n))
 
     def act(self, observation: gym.spaces.Box) -> gym.spaces.Discrete:
+        """
+        It is a model created by Zepu
+        """
         # Compute the probabilities of each action based on the current policy
         logits = np.dot(observation, self.weights)
         probs = np.exp(logits) / np.sum(np.exp(logits))
