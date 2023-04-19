@@ -18,7 +18,7 @@ agent = Agent(
 
 total_reward = 0
 last_n_rewards = []
-for _ in range(100000):
+for _ in range(1):
     action = agent.act(observation)
     observation, reward, terminated, truncated, info = env.step(action)
     agent.learn(observation, reward, terminated, truncated)
