@@ -7,7 +7,7 @@ import gymnasium as gym
 
 class QNetwork(nn.Module):
     """
-    It is a model created by Zepu
+    It is a model created by Zepu haha
     """
 
     def __init__(self, state_dim, action_dim):
