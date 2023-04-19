@@ -27,7 +27,7 @@ class Agent:
 
     def act(self, observation: gym.spaces.Box) -> gym.spaces.Discrete:
         """
-        It is a model created by Zepu
+        It is a model created by Zepu haha
 
         """
         # Compute the probabilities of each action based on the current policy
