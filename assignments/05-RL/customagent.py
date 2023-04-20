@@ -14,11 +14,18 @@ class Agent:
         self.observation_space = observation_space
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
+        """
+        It is a model created by Zepu
+        """
 
         # Initialize the policy weights to zeros
         self.weights = np.zeros((observation_space.shape[0], action_space.n))
 
     def act(self, observation: np.ndarray) -> int:
+        """
+        It is a model created by Zepu
+        """
+
         # Compute the probabilities of each action based on the current policy
         logits = np.dot(observation, self.weights)
         probs = np.exp(logits) / np.sum(np.exp(logits))
@@ -35,6 +42,10 @@ class Agent:
         next_observation: np.ndarray,
         done: bool,
     ) -> None:
+        """
+        It is a model created by Zepu
+        """
+
         # Compute the TD error
         td_error = (
             reward
