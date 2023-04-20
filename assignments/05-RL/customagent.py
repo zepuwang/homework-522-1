@@ -4,58 +4,39 @@ import gymnasium as gym
 
 class Agent:
     """
-    It is a model created by Zepu
+    An agent that learns to play a game using Q-learning.
     """
 
     def __init__(
-        self,
-        action_space: gym.spaces.Discrete,
-        observation_space: gym.spaces.Box,
-        learning_rate: float = 0.01,
-        discount_factor: float = 0.99,
+        self, action_space, observation_space, learning_rate=0.01, discount_factor=0.99
     ):
         self.action_space = action_space
         self.observation_space = observation_space
         self.learning_rate = learning_rate
         self.discount_factor = discount_factor
-        """
-        It is a model created by Zepu
-        """
 
-        # Initialize the policy weights to zeros
-        self.weights = np.zeros((observation_space.shape[0], action_space.n))
+        # Initialize the Q-table to zeros
+        self.q_table = np.zeros((observation_space.shape[0], action_space.n))
 
-    def act(self, observation: np.ndarray) -> int:
+    def act(self, observation):
         """
-        It is a model created by Zepu
+        Select an action based on the current Q-values.
         """
-
-        # Compute the probabilities of each action based on the current policy
-        logits = np.dot(observation, self.weights)
-        probs = np.exp(logits) / np.sum(np.exp(logits))
-
-        # Choose an action based on the probabilities
-        action = np.random.choice(self.action_space.n, p=probs)
+        q_values = self.q_table[observation]
+        action = np.argmax(q_values)
         return action
 
-    def learn(
-        self,
-        observation: np.ndarray,
-        action: int,
-        reward: float,
-        next_observation: np.ndarray,
-        done: bool,
-    ) -> None:
+    def learn(self, observation, reward, done, info):
         """
-        It is a model created by Zepu
+        Update the Q-table based on the observed reward and transition.
         """
+        if done:
+            td_error = reward - self.q_table[observation]
+        else:
+            td_error = (
+                reward
+                + self.discount_factor * np.max(self.q_table[observation])
+                - self.q_table[observation]
+            )
 
-        # Compute the TD error
-        td_error = (
-            reward
-            + self.discount_factor * np.max(np.dot(next_observation, self.weights))
-            - np.dot(observation, self.weights)[:, action]
-        )
-
-        # Update the policy weights using the TD error and the current observation
-        self.weights[:, action] += self.learning_rate * td_error * observation
+        self.q_table[observation] += self.learning_rate * td_error
