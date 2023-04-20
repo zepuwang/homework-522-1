@@ -3,6 +3,10 @@ import gymnasium as gym
 
 
 class Agent:
+    """
+    It is a model created by Zepu
+    """
+
     def __init__(
         self,
         action_space: gym.spaces.Discrete,
