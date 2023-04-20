@@ -38,9 +38,3 @@ for _ in range(100000):
         total_reward = 0
 
 env.close()
-
-
-
-
-
-
